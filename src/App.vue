@@ -3,7 +3,7 @@
     <h1 class="ui dividing centered header">Vue.js Todo App</h1>
     <div class='ui three column centered grid'>
       <div class='column'>
-        <todo-list v-bind:todos="todos"></todo-list>
+        <todo-list v-bind:todos="todos" v-bind:checkedStatus="checkedStatus"></todo-list>
         <create-todo v-on:create-todo="createTodo"></create-todo>
       </div>
     </div>
@@ -21,6 +21,7 @@ export default {
   },
   data() {
     return {
+      checkedStatus: ['pending'],
       todos: [{
         title: 'Todo A',
         project: 'Project A',

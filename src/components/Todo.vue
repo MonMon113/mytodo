@@ -28,15 +28,17 @@
         </div>
         <div class='ui two button attached buttons'>
           <button class='ui basic blue button' v-on:click="hideForm">
-            Close X
+            Done
           </button>
         </div>
       </div>
     </div>
-    <div class='ui bottom attached green basic button' v-show="!isEditing &&todo.done" disabled>
+    <div class='ui bottom attached green basic button'  v-if="todo.done === true" >
+      <input type="checkbox" @click="uncompleteTodo(todo)" checked>
         Completed
     </div>
-    <div class='ui bottom attached red basic button' v-on:click="completeTodo(todo)" v-show="!isEditing && !todo.done">
+    <div class='ui bottom attached red basic button' v-else>
+      <input type="checkbox" @click="completeTodo(todo)">
         Pending
     </div>
   </div>
@@ -62,6 +64,12 @@
       },
       hideForm() {
         this.isEditing = false;
+      },
+      completeTodo(todo) {
+        this.$emit('complete-todo', todo);
+      },
+      uncompleteTodo(todo) {
+        this.$emit('uncomplete-todo', todo);
       },
     },
   };
